@@ -1,0 +1,8 @@
+[30-May-2025 22:02:33 Asia/Tokyo] PHP Fatal error:  Uncaught Error: Class "Token" not found in C:\Users\kuboh\Desktop\php\Typoon25\Typoon\Form.php:37
+Stack trace:
+#0 C:\Users\kuboh\Desktop\php\Typoon25\App\popst\Exec\adminIndex\index.php(33): Form::start()
+#1 C:\Users\kuboh\Desktop\php\Typoon25\Typoon\System\Router.php(44): require_once('C:\\Users\\kuboh\\...')
+#2 C:\Users\kuboh\Desktop\php\Typoon25\Typoon\System\Router.php(199): urlFunc('/', 'adminIndex')
+#3 C:\Users\kuboh\Desktop\php\Typoon25\App\popst\Public\router.php(3): require_once('C:\\Users\\kuboh\\...')
+#4 {main}
+  thrown in C:\Users\kuboh\Desktop\php\Typoon25\Typoon\Form.php on line 37
