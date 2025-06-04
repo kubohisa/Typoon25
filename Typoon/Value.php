@@ -31,11 +31,11 @@ class Value
 		$this->error[$exec]["flag"] = false;
 	}
 
-	private function setError($exec, $massage = "")
+	private function setError($exec, $message = "")
 	{
 		$this->error["SYSTEM"]["error"] = true;
 		$this->error[$exec]["flag"] = true;
-		$this->error[$exec]["massage"] = (string)$massage;
+		$this->error[$exec]["message"] = (string)$message;
 	}
 
 	public function getError()
@@ -123,8 +123,8 @@ class Value
 
 			case "length":
 				if (mb_strlen($this->value) < $option[0] || mb_strlen($this->value) > $option[1]) {
-					if (empty($option[1])) $option[1] = "";
-					$this->setError($exec, $option[1]);
+					if (empty($option[2])) $option[2] = "";
+					$this->setError($exec, $option[2]);
 				}
 				break;
 
@@ -152,7 +152,7 @@ class Value
 
 			//
 			case "equal":
-				if (! $this->value === $option[0]) {
+				if ($this->value !== $option[0]) {
 					if (empty($option[1])) $option[1] = "";
 					$this->setError($exec, $option[1]);
 				}
@@ -182,9 +182,9 @@ class Value
 
 			//	Mode AI.	
 			case "preg":
-				if (! preg_match($pattern, $this->value)) {
-					if (empty($option[0])) $option[0] = "";
-					$this->setError($exec, $option[0]);
+				if (! preg_match($option[0], $this->value)) {
+					if (empty($option[1])) $option[1] = "";
+					$this->setError($exec, $option[1]);
 				}
 				break;
 
@@ -226,7 +226,7 @@ class Value
 		return $this;
 	}
 
-	public function deleter($exec)
+	public function delete($exec)
 	{
 		switch ($exec) {
 			case "trim":
