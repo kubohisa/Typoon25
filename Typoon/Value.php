@@ -5,7 +5,6 @@
 
 class Value
 {
-//
 	/*
 		System Functions.
 	*/
@@ -60,6 +59,24 @@ class Value
 	{
 		$this->initError($exec);
 
+		//
+		if ($exec === "in") {
+			$exec = "required";
+		}
+		if ($exec === "notNull") {
+			$exec = "required";
+		}
+		if ($exec === "empty") {
+			$exec = "required";
+		}
+		if ($exec === "same") {
+			$exec = "equal";
+		}
+		if ($exec === "") {
+			$exec = "";
+		}
+
+		//
 		switch ($exec) {
 			case "required":
 				if (empty($this->value) && $this->value !== 0 && $this->value !== "0") {
@@ -106,8 +123,38 @@ class Value
 
 			case "length":
 				if (mb_strlen($this->value) < $option[0] || mb_strlen($this->value) > $option[1]) {
-					if (empty($option[2])) $option[2] = "";
-					$this->setError($exec, $option[2]);
+					if (empty($option[1])) $option[1] = "";
+					$this->setError($exec, $option[1]);
+				}
+				break;
+
+			//
+			case "alpha":
+				if (! preg_match('#\A[a-zA-Z]+\z#', $this->value)) {
+					if (empty($option[0])) $option[0] = "";
+					$this->setError($exec, $option[0]);
+				}
+				break;
+
+			case "digit":
+				if (! is_numeric($this->value)) {
+					if (empty($option[0])) $option[0] = "";
+					$this->setError($exec, $option[0]);
+				}
+				break;
+
+			case "alphanumeric":
+				if (! preg_match('#\A[a-zA-Z0-9]+\z#', $this->value)) {
+					if (empty($option[0])) $option[0] = "";
+					$this->setError($exec, $option[0]);
+				}
+				break;
+
+			//
+			case "equal":
+				if (! $this->value === $option[0]) {
+					if (empty($option[1])) $option[1] = "";
+					$this->setError($exec, $option[1]);
 				}
 				break;
 
@@ -134,12 +181,12 @@ class Value
 				break;
 
 			//	Mode AI.	
-			case "same":
+			case "preg":
 				if (! preg_match($pattern, $this->value)) {
 					if (empty($option[0])) $option[0] = "";
 					$this->setError($exec, $option[0]);
 				}
-				break; // (YYYY-MM-DD 形式)
+				break;
 
 			case "date":
 				if (! preg_match('/^\d{4}-\d{2}-\d{2}$/', $this->value)) {
@@ -193,14 +240,72 @@ class Value
 		return $this;
 	}
 
-	public function filter($exec)
+	public function type($exec)
 	{
 		switch ($exec) {
-			case "lrtobr":
-				$this->value = preg_replace('/\r\n|\r|\n/', '<br />', $this->value);
+			case "int":
+				$this->value = (int)$this->value;
+				break;
+
+			case "float":
+				$this->value = (float)$this->value;
+				break;
+
+			case "string":
+				$this->value = (string)$this->value;
+				break;
+
+			case "":
 				break;
 		}
 
-		return $this; 
+		return $this;
+	}
+
+	public function filter($exec)
+	{
+		switch ($exec) {
+			//
+			case "toBr":
+				$this->value = preg_replace('/\r\n|\r|\n/', '<br />', $this->value);
+				// $this->value = nl2br($this->value);
+				break;
+
+			case "htmlEscape":
+				$this->value = htmlentities($this->value, ENT_QUOTES);
+				break;
+
+			case "deleteTag":
+				$this->value = strip_tags($this->value);
+				break;
+
+			case "deleteRn":
+				$this->value = preg_replace('#[\r\n]+?#u', '', $this->value);
+				break;
+
+			case "":
+				break;
+		}
+
+		return $this;
+	}
+
+	public function make($exec)
+	{
+		switch ($exec) {
+			//
+			case "time":
+				$this->value = time();
+				break;
+
+			case "dateNow":
+				$this->value = date('Y年m月d日 H時i分s秒', time());
+				break;
+
+			case "":
+				break;
+		}
+
+		return $this;
 	}
 }
