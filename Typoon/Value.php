@@ -5,7 +5,7 @@
 
 class Value
 {
-
+//
 	/*
 		System Functions.
 	*/
@@ -133,7 +133,42 @@ class Value
 				}
 				break;
 
-			//			
+			//	Mode AI.	
+			case "same":
+				if (! preg_match($pattern, $this->value)) {
+					if (empty($option[0])) $option[0] = "";
+					$this->setError($exec, $option[0]);
+				}
+				break; // (YYYY-MM-DD 形式)
+
+			case "date":
+				if (! preg_match('/^\d{4}-\d{2}-\d{2}$/', $this->value)) {
+					if (empty($option[0])) $option[0] = "";
+					$this->setError($exec, $option[0]);
+				}
+				break; // (YYYY-MM-DD 形式)
+
+			case "post":
+				if (! preg_match('/^\d{3}-\d{4}$/', $this->value)) {
+					if (empty($option[0])) $option[0] = "";
+					$this->setError($exec, $option[0]);
+				}
+				break;
+
+			case "phone":
+				if (! preg_match('/^0\d{1,4}-\d{1,4}-\d{4}$/', $this->value)) {
+					if (empty($option[0])) $option[0] = "";
+					$this->setError($exec, $option[0]);
+				}
+				break;
+
+			case "card":
+				if (! preg_match('/^\d{13,16}$/', $this->value)) {
+					if (empty($option[0])) $option[0] = "";
+					$this->setError($exec, $option[0]);
+				}
+				break;
+
 
 			//
 			default:
@@ -161,10 +196,11 @@ class Value
 	public function filter($exec)
 	{
 		switch ($exec) {
-			case "":
+			case "lrtobr":
+				$this->value = preg_replace('/\r\n|\r|\n/', '<br />', $this->value);
 				break;
 		}
 
-		return $this;
+		return $this; 
 	}
 }

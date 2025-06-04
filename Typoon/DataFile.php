@@ -14,10 +14,6 @@ class DataFile
             return array();
         }
 
-        if (isset($data[0])) {
-            $data = $data[0];
-        }
-
         return $data;
     }
 
