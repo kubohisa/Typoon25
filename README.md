@@ -8,7 +8,9 @@ This is Cheap Weight WEB Framework "Typoon".
 
  Ver Alpha.
 
- ### Tools,
+### Tools,
 
- ROLAcahn font : https://ozawa.design/store/rolachan/
+Bing Image Creator : https://www.bing.com/images/create/
+
+ROLAchan font : https://ozawa.design/store/rolachan/
 
