@@ -48,7 +48,7 @@ class Value
 
 	public function close()
 	{
-		return self::getError();
+		return $this->getError();
 	}
 
 	/*
@@ -79,7 +79,7 @@ class Value
 		//
 		switch ($exec) {
 			case "required":
-				if (empty($this->value) && $this->value !== 0 && $this->value !== "0") {
+				if (empty($this->value)) {
 					$this->setError($exec);
 				}
 				break;
