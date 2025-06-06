@@ -138,8 +138,6 @@ require_once(tyPath . "System/Loger.php");
 	EXEC.
 */
 
-require_once("../Setting/exec.php");
-
 require_once(tyPath . "System/Router/UrlFunc.php");
 
 // Not EXEC then Error page.

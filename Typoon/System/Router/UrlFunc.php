@@ -37,6 +37,8 @@ function urlFunc($url, $func)
     }
 }
 
+require_once("../Setting/exec.php");
+
 array_multisort(
     array_map(
         "strlen",
