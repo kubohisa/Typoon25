@@ -8,6 +8,10 @@ This is Cheap Weight WEB Framework "Typoon".
 
  Ver Alpha.
 
+## アメリカンジョーク
+
+「プログラミングはPHPとの戦いです。クイズ・Typoon25。」
+
 ### Tools,
 
 Bing Image Creator : https://www.bing.com/images/create/
