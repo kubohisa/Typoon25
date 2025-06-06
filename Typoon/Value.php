@@ -302,10 +302,11 @@ class Value
 				$this->value = date('Y年m月d日 H時i分s秒', time());
 				break;
 
-			case "":
+			default:
+				$this->value = "";
 				break;
 		}
 
-		return $this;
+		return $this->value;
 	}
 }
