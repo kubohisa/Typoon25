@@ -1,6 +1,20 @@
 <?php
 
 /*
+	.
+*/
+
+function errorPage($code)
+{
+    if ($code !== 503) {
+        $code = 404;
+    }
+
+    header("Location: /{$code}.html");
+    exit;
+}
+
+/*
 	Init.
 */
 
@@ -16,18 +30,21 @@ $URI = "";
 $GET = array();
 
 /*
-	.
+	Php Settings.
 */
 
-function errorPage($code)
-{
-    if ($code !== 503) {
-        $code = 404;
-    }
+mb_language("Japanese");
+mb_internal_encoding("UTF-8");
 
-    header("Location: /{$code}.html");
-    exit;
-}
+date_default_timezone_set('Asia/Tokyo');
+
+// Setting.
+
+require_once("../Setting/setting.php");
+
+// Waf.
+
+require_once(tyPath . "System/Router/Waf.php");
 
 /*
 	ファイルがあれば、それを表示
@@ -40,25 +57,11 @@ if ($URI === "/router.php") {
     exit;
 }
 
-/*
-if ($URI === "/favicon.ico") {
-    return false;
-}
-*/
-
 require_once(tyPath . "System/Router/RealFileEcho.php");
 
 /*
 
 */
-
-// Setting.
-
-require_once("../Setting/setting.php");
-
-// Waf.
-
-require_once(tyPath . "System/Router/Waf.php");
 
 // Session Seting.
 
@@ -120,15 +123,6 @@ if ($_SERVER["REQUEST_URI"] === "/logout") {
     header("Location: /");
     exit;
 }
-
-/*
-	Php Settings.
-*/
-
-mb_language("Japanese");
-mb_internal_encoding("UTF-8");
-
-date_default_timezone_set('Asia/Tokyo');
 
 /*
 	require.
