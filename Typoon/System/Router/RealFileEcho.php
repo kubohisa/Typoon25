@@ -37,9 +37,15 @@ if (file_exists("." . $_SERVER["REQUEST_URI"]) && $_SERVER["REQUEST_URI"] !== "/
     ]; // https://www.abe-tatsuya.com/techblog/article/15
 
     $ext = pathinfo($_SERVER["REQUEST_URI"], PATHINFO_EXTENSION);
-    $mimeType = $extensions[$ext] ?? "application/octet-stream"; // 未定義の場合はデフォルト値
+
+    // 拡張子がphpならエラーページへ
+    if ($ext === "php") {
+        errorPage(404);
+        exit;
+    }
 
     // MIME-Type をヘッダーに設定
+    $mimeType = $extensions[$ext] ?? "application/octet-stream"; // 未定義の場合はデフォルト値
     header("Content-Type: $mimeType");
 
     // ファイルの内容を出力

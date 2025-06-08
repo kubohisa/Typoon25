@@ -52,11 +52,6 @@ require_once(tyPath . "System/Router/Waf.php");
 
 $URI = $_SERVER["REQUEST_URI"];
 
-if ($URI === "/router.php") {
-    errorPage(404);
-    exit;
-}
-
 require_once(tyPath . "System/Router/RealFileEcho.php");
 
 /*
