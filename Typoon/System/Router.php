@@ -40,13 +40,13 @@ if ($URI === "/router.php") {
     exit;
 }
 
+/*
 if ($URI === "/favicon.ico") {
     return false;
 }
+*/
 
-if (file_exists("." . $_SERVER["REQUEST_URI"]) && $_SERVER["REQUEST_URI"] !== "/") {
-    return false;
-}
+require_once(tyPath . "System/Router/RealFileEcho.php");
 
 /*
 
@@ -108,9 +108,11 @@ if ($_SERVER["REQUEST_URI"] === "/life") {
 if ($_SERVER["REQUEST_URI"] === "/logout") {
     // Delete Session.
     $_SESSION = array();
+
     if (isset($_COOKIE["PHPSESSID"])) {
         setcookie("PHPSESSID", '', time() - 1800, '/');
     }
+
     session_destroy();
 
     // Go TopPage.
