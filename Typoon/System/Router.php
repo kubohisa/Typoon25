@@ -1,8 +1,8 @@
 <?php
 
-/*
-	.
-*/
+/**
+ *  エラーページ処理
+ */
 
 function errorPage($code)
 {
@@ -14,24 +14,18 @@ function errorPage($code)
     exit;
 }
 
-/*
-	Init.
-*/
+/**
+ *  Typoon 初期設定
+ */
 
 // if (!defined('systemName')) exit;
 
 define("systemName", "TypoonV4");
 define("tyPath", "../../../Typoon/");
 
-$EXEC = "";
-
-$URI = "";
-
-$GET = array();
-
-/*
-	Php Settings.
-*/
+/**
+ *  Php Settings.
+ */
 
 mb_language("Japanese");
 mb_internal_encoding("UTF-8");
@@ -50,9 +44,9 @@ require_once(tyPath . "System/Router/Waf.php");
 	ファイルがあれば、それを表示
 */
 
-$URI = $_SERVER["REQUEST_URI"];
-
-require_once(tyPath . "System/Router/RealFileEcho.php");
+if (file_exists("." . $_SERVER["REQUEST_URI"]) && $_SERVER["REQUEST_URI"] !== "/") {
+    require_once(tyPath . "System/Router/RealFileEcho.php");
+}
 
 /*
 
@@ -122,12 +116,13 @@ if ($_SERVER["REQUEST_URI"] === "/logout") {
 /*
 	require.
 */
+
 require_once(tyPath . "System/Token.php");
 require_once(tyPath . "System/Loger.php");
 
-/*
-	EXEC.
-*/
+/**
+ *  EXEC.
+ */
 
 require_once(tyPath . "System/Router/UrlFunc.php");
 

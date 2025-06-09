@@ -1,16 +1,24 @@
 <?php
 
+/**
+ *  
+ */
+
 function urlFunc($url, $func)
 {
     global $GET, $EXEC, $URI;
 
-    // Use preg "*".
-    $url = preg_replace("#\/\*(.+?)(\/|\z)#", "\/(?P<$1>.*?)$1$2", $url);
+    /**
+     *  $urlから正規表現で、パラメーターを取得できる正規表現を作る
+     */
 
-    // Use preg ":".
-    $url = preg_replace("#\/\:(.+?)(\/|\z)#", "\/(?P<$1>.*?)$2", $url);
+    $url = preg_replace("#\/\*(.+?)(\/|\z)#", "\/(?P<$1>.*?)$1$2", $url); // Use preg "*".
+    $url = preg_replace("#\/\:(.+?)(\/|\z)#", "\/(?P<$1>.*?)$2", $url); // Use preg ":".
 
-    // Clean get.
+    /**
+     *  $urlと$URIが正規表現上同じなら実行
+     */
+
     if (preg_match("#\A{$url}\z#", $URI, $arr)) {
         foreach (array_keys($arr) as $key) {
             // URL decode & Trim.
@@ -37,7 +45,25 @@ function urlFunc($url, $func)
     }
 }
 
+/**
+ *  Typoon グローバル変数
+ */
+
+$EXEC = "";
+
+$URI = $_SERVER["REQUEST_URI"];
+
+$GET = array();
+
+/**
+ *  設定読み込み
+ */
+
 require_once("../Setting/exec.php");
+
+/**
+ *  URLソート
+ */
 
 array_multisort(
     array_map(
@@ -47,6 +73,10 @@ array_multisort(
     SORT_DESC,
     urlFunc::$list
 ); // url string length sort.
+
+/**
+ *  URLチェック、実行
+ */
 
 foreach (urlFunc::$list as [$path, $exec]) {
     urlFunc($path, $exec);
