@@ -1,6 +1,6 @@
 <?php
 
-class XorEncrypt
+class XorCrypt
 {
     /**
      *  XORを使った簡易ストリーム暗号化クラス
