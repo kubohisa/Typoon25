@@ -9,4 +9,6 @@ class typoon
     public static $Https = false;
 
     public static $Debug = true;
+
+    public static $XorCryptKey = "RandomStringData"; // ランダムな数列や文字列。なるべく長く
 }

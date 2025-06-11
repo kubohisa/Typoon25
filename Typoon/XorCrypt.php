@@ -1,5 +1,7 @@
 <?php
 
+require_once("../Setting/setting.php");
+
 class XorCrypt
 {
     /**
@@ -8,7 +10,8 @@ class XorCrypt
      *  Copilotで生成した関数を手作業でクラス化
      */
 
-    static $key = "RandomStringData"; // ランダムな数列や文字列。なるべく長く
+    //static $key = "RandomStringData"; // ランダムな数列や文字列。なるべく長く
+
 
     /**
      *  暗号化
@@ -16,11 +19,11 @@ class XorCrypt
 
     static function Encrypt($data)
     {
-        $keyLength = strlen(self::$key);
+        $keyLength = strlen(typoon::$XorCryptKey);
         $encrypted = '';
 
         for ($i = 0, $len = strlen($data); $i < $len; $i++) {
-            $encrypted .= $data[$i] ^ self::$key[$i % $keyLength];
+            $encrypted .= $data[$i] ^ typoon::$XorCryptKey[$i % $keyLength];
         }
 
         return base64_encode($encrypted);
@@ -32,12 +35,12 @@ class XorCrypt
 
     static function Decrypt($encryptedData)
     {
-        $keyLength = strlen(self::$key);
+        $keyLength = strlen(typoon::$XorCryptKey);
         $data = base64_decode($encryptedData);
         $decrypted = '';
 
         for ($i = 0, $len = strlen($data); $i < $len; $i++) {
-            $decrypted .= $data[$i] ^ self::$key[$i % $keyLength];
+            $decrypted .= $data[$i] ^ typoon::$XorCryptKey[$i % $keyLength];
         }
 
         return $decrypted;
