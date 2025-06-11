@@ -22,6 +22,7 @@ function errorPage($code)
 
 define("systemName", "TypoonV4");
 define("tyPath", "../../../Typoon/");
+define("extLibPath", "../../../extLib/");
 
 /**
  *  Php Settings.
