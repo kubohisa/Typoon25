@@ -283,6 +283,15 @@ class Value
 				$this->value = preg_replace('#[\r\n]+?#u', '', $this->value);
 				break;
 
+			case "lenPost":
+				if (strlen($this->value) > 1000) {
+					if (empty($option[1])) $option[1] = "";
+					$this->setError($exec, $option[1]);
+
+					$this->value = "";
+				}
+				break; // セキュリティの為のPOSTのデータ長チェック（仮組み）
+
 			case "":
 				break;
 		}
