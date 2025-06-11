@@ -99,14 +99,8 @@ if ($_SERVER["REQUEST_URI"] === "/life") {
 // logout.
 
 if ($_SERVER["REQUEST_URI"] === "/logout") {
-    // Delete Session.
-    $_SESSION = array();
-
-    if (isset($_COOKIE["PHPSESSID"])) {
-        setcookie("PHPSESSID", '', time() - 1800, '/');
-    }
-
-    session_destroy();
+    //
+    require_once(tyPath . "System/Router/DeleteSession.php");
 
     // Go TopPage.
     //        header("Location: /logout.html");
