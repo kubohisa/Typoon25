@@ -19,8 +19,12 @@ class Password
          *  暗号化
          */
 
+        // パスワードへ文字列を追加して、パスワードを変身させてハッシュをずらすロスト・テクノロジー
+        $password = substr_replace($dummy, $password, 4);
+
+        // SSLを（ちゃんと）使ってない暗号化
         $value = openssl_encrypt(
-            substr_replace($dummy, $password, 4), // パスワードを変身させてハッシュをずらすロスト・テクノロジー
+            $password,
             'aes-256-cbc',
             $pass,
             OPENSSL_RAW_DATA,
