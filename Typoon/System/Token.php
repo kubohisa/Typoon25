@@ -19,7 +19,7 @@ class Token
 
         $_SESSION['TyIpToken'] = hash(
             'ripemd160',
-            $ip.$_SERVER['HTTP_USER_AGENT'].$_SERVER['HTTP_ACCEPT_LANGUAGE']
+            $ip . $_SERVER['HTTP_USER_AGENT'] . $_SERVER['HTTP_ACCEPT_LANGUAGE']
         );
         // ブラウザーの情報等を保存せずにハッシュ化
         // スマホなどはipアドレスが変化する可能性があるので、フォーム作成時ハッシュ作成
@@ -36,11 +36,11 @@ class Token
         //
         $_SESSION['uuId'] = strtoupper(hash(
             'sha512',
-            hash('sha512', $id)."_".
-            hash('sha512', "NameSpace")."_".
-        //	hash('sha512', $_SERVER['REMOTE_ADDR'])."_".
-            hash('sha512', microtime())."_".
-            hash('sha512', rand())
+            hash('sha512', $id) . "_" .
+                hash('sha512', "NameSpace") . "_" .
+                //	hash('sha512', $_SERVER['REMOTE_ADDR'])."_".
+                hash('sha512', microtime()) . "_" .
+                hash('sha512', rand())
         ));
 
         //
@@ -56,32 +56,9 @@ class Token
     public static function uidOriginal($id)
     {
         //
-        return $id.":".
-            substr(str_shuffle(str_shuffle(hash('ripemd160', uniqid()))), 0, 14).":".
+        return $id . ":" .
+            substr(str_shuffle(str_shuffle(hash('ripemd160', uniqid()))), 0, 14) . ":" .
             substr((string)time(), -10);
-
-    }
-
-    /*
-
-    */
-
-    public function passwordHash($password)
-    {
-        $pass = 'password';
-        $iv = '1234567890123456'; //16桁
-
-        // 暗号化
-        $this->value = openssl_encrypt(
-            "Dummy".$password,
-            'aes-256-cbc',
-            $pass,
-            OPENSSL_RAW_DATA,
-            $iv
-        );
-
-        // Hash.
-        return hash_hmac('sha512', $password, 'secret', false);
     }
 
     /*
@@ -101,5 +78,4 @@ class Token
     {
         return substr(str_shuffle(hash('ripemd160', uniqid())), 0, $length);
     }
-
 }

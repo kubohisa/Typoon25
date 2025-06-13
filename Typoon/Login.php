@@ -7,6 +7,8 @@ class Login
         Token::uid($id);
 
         $_SESSION['LoginId'] = $id;
+
+        session_regenerate_id(true);
     }
 
     public static function check()

@@ -15,6 +15,15 @@ function errorPage($code)
 }
 
 /**
+ *  Php Settings.
+ */
+
+mb_language("Japanese");
+mb_internal_encoding("UTF-8");
+
+date_default_timezone_set('Asia/Tokyo');
+
+/**
  *  Typoon 初期設定
  */
 
@@ -24,20 +33,11 @@ define("systemName", "TypoonV4");
 define("tyPath", "../../../Typoon/");
 define("extLibPath", "../../../extLib/");
 
-/**
- *  Php Settings.
- */
-
-mb_language("Japanese");
-mb_internal_encoding("UTF-8");
-
-date_default_timezone_set('Asia/Tokyo');
-
-// Setting.
-
 require_once("../Setting/setting.php");
 
-// Waf.
+/**
+ *  Waf.
+ */
 
 require_once(tyPath . "System/Router/Waf.php");
 
@@ -49,11 +49,9 @@ if (file_exists("." . $_SERVER["REQUEST_URI"]) && $_SERVER["REQUEST_URI"] !== "/
     require_once(tyPath . "System/Router/RealFileEcho.php");
 }
 
-/*
-
-*/
-
-// Session Seting.
+/**
+ *  Session Seting.
+ */
 
 session_name(typoon::$SessionName);
 
@@ -62,16 +60,19 @@ if (isset($_SERVER['HTTPS'])) {
 } // if https then.
 
 ini_set('session.cookie_httponly', 1); // http only.
-
 ini_set('session.use_strict_mode', 1); // server mode only.
 
 session_set_cookie_params(3600);
-
 session_start();
 
-session_regenerate_id();
+if (time() % 10 === 0) { // 10%の確率でsession idをリセット
+    session_regenerate_id(true);
+}
 
-// Error message?
+
+/**
+ *  Error message?
+ */
 
 if (typoon::$Debug === true) {
     ini_set('display_errors', 'On');
