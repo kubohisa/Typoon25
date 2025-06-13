@@ -61,6 +61,37 @@ class Token
             substr((string)time(), -10);
     }
 
+    /**
+     * ランダムなテキスト生成（仮組み）
+     * 
+     * MSXBAISCの頃のアルゴリズムで
+     */
+
+    public static function RandomStringClassic($len)
+    {
+        $text = '';
+
+        for ($i = 0; $i < $len; $i++) {
+            $text .= chr(random_int(33, 91));
+        }
+
+        return $text;
+    }
+
+    /**
+     * 16bit Random.
+     */
+
+    public static function Random16byte()
+    {
+        return random_bytes(16);
+    }
+
+    public static function Random16byteHex()
+    {
+        return bin2hex(random_bytes(16));
+    }
+
     /*
 
     */
