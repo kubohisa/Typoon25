@@ -21,7 +21,6 @@ class Token
             'ripemd160',
             $ip . $_SERVER['HTTP_USER_AGENT'] . $_SERVER['HTTP_ACCEPT_LANGUAGE']
         );
-        // ブラウザーの情報等を保存せずにハッシュ化
         // スマホなどはipアドレスが変化する可能性があるので、フォーム作成時ハッシュ作成
 
         return $_SESSION['TyIpToken'];
@@ -67,7 +66,7 @@ class Token
      * MSXBAISCの頃のアルゴリズムで
      */
 
-    public static function RandomStringClassic($len)
+    public static function randomWordClassic($len)
     {
         $text = '';
 
@@ -79,15 +78,24 @@ class Token
     }
 
     /**
-     * 16bit Random.
+     * ランダムなテキスト生成
      */
 
-    public static function Random16byte()
+    public static function randomWord($length = 10)
+    {
+        return substr(str_shuffle(hash('ripemd160', uniqid('', true))), 0, $length);
+    }
+
+    /**
+     * 16byte Random.
+     */
+
+    public static function random16byte()
     {
         return random_bytes(16);
     }
 
-    public static function Random16byteHex()
+    public static function random16byteHex()
     {
         return bin2hex(random_bytes(16));
     }
@@ -96,31 +104,22 @@ class Token
      * Systemtime.
      */
 
-    public static function Systemtime()
+    public static function systemtime()
     {
         return microtime(true) * 1000000;
     }
 
-    public static function SystemtimeHex()
+    public static function systemtimeHex()
     {
         return dechex(microtime(true) * 1000000);
     }
 
-    /*
-
-    */
+    /**
+     * フォーム向けトークン
+     */
 
     public static function formToken()
     {
-        return str_shuffle(hash('ripemd160', uniqid()));
-    }
-
-    /*
-
-    */
-
-    public static function randomword($length = 10)
-    {
-        return substr(str_shuffle(hash('ripemd160', uniqid())), 0, $length);
+        return str_shuffle(hash('ripemd160', uniqid('', true)));
     }
 }
