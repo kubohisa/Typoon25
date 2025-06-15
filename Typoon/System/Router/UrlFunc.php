@@ -12,8 +12,15 @@ function urlFunc($url, $func)
      *  $urlから正規表現で、パラメーターを取得できる正規表現を作る
      */
 
+    $url = trim($url);
+
     $url = preg_replace("#\/\*(.+?)(\/|\z)#", "\/(?P<$1>.*?)$1$2", $url); // Use preg "*".
+
     $url = preg_replace("#\/\:(.+?)(\/|\z)#", "\/(?P<$1>.*?)$2", $url); // Use preg ":".
+    $url = preg_replace("#\/\[(.+?)\](\/|\z)#", "\/(?P<$1>.*?)$2", $url); // Use preg "[]".
+    $url = preg_replace("#\/\{(.+?)\}(\/|\z)#", "\/(?P<$1>.*?)$2", $url); // Use preg "{}".
+
+    $url = preg_replace("#\/\[\.\.\.(.+?)\](.*)\z#", "\/(?P<$1>.*?)$2\z", $url); // Use preg "/*/". (仮組み)
 
     /**
      *  $urlと$URIが正規表現上同じなら実行

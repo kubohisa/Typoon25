@@ -92,6 +92,20 @@ class Token
         return bin2hex(random_bytes(16));
     }
 
+    /**
+     * Systemtime.
+     */
+
+    public static function Systemtime()
+    {
+        return microtime(true) * 1000000;
+    }
+
+    public static function SystemtimeHex()
+    {
+        return dechex(microtime(true) * 1000000);
+    }
+
     /*
 
     */
