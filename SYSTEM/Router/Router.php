@@ -16,11 +16,12 @@ date_default_timezone_set('Asia/Tokyo');
 // if (!defined('systemName')) exit;
 
 define("systemName", "TypoonV4");
-define("tyPath", "../../../Typoon/");
-define("tySystemPath", "../../../SYSTEM/");
-define("extLibPath", "../../../extLib/");
 
-require_once("../Setting/setting.php");
+define("tyPath", tyDir . "/../../../Typoon/");
+define("tySystemPath", tyDir . "/../../../SYSTEM/");
+define("extLibPath", tyDir . "/../../../extLib/");
+
+require_once(tyDir . "/../Setting/setting.php");
 
 /*
 	require.
