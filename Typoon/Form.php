@@ -23,7 +23,7 @@ class Form
         $url = parse_url($_SERVER['HTTP_REFERER']);
 
         if ($url['host'] !== typoon::$DomainName) {
-            errorPage(503);
+            Std::errorPage(503);
             exit;
         }
     }

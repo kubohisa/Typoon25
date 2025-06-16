@@ -12,7 +12,7 @@ function urlFunc($url, $func)
      *  $urlから正規表現で、パラメーターを取得できる正規表現を作る
      */
 
-    $url = trim($url);
+    $url = Std::mbTrim($url);
 
     $url = preg_replace("#\/\*(.+?)(\/|\z)#", "\/(?P<$1>.*?)$1$2", $url); // Use preg "*".
 
@@ -29,7 +29,7 @@ function urlFunc($url, $func)
     if (preg_match("#\A{$url}\z#", $URI, $arr)) {
         foreach (array_keys($arr) as $key) {
             // URL decode & Trim.
-            $arr[$key] = preg_replace('#\A[\p{C}\p{Z}]++|[\p{C}\p{Z}]++\z#u', '', urldecode($arr[$key]));
+            $arr[$key] = Std::mbTrim(urldecode($arr[$key]));
         }
 
         // Delete uri data.
