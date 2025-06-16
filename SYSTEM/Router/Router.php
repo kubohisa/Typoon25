@@ -17,6 +17,7 @@ date_default_timezone_set('Asia/Tokyo');
 
 define("systemName", "TypoonV4");
 define("tyPath", "../../../Typoon/");
+define("tySystemPath", "../../../SYSTEM/");
 define("extLibPath", "../../../extLib/");
 
 require_once("../Setting/setting.php");
@@ -25,35 +26,35 @@ require_once("../Setting/setting.php");
 	require.
 */
 
-require_once(tyPath . "System/Token.php");
-require_once(tyPath . "System/Loger.php");
-require_once(tyPath . "System/Std.php");
+require_once(tySystemPath . "Token.php");
+require_once(tySystemPath . "Loger.php");
+require_once(tySystemPath . "Std.php");
 
 /**
  *  Waf.
  */
 
-require_once(tyPath . "System/Router/Waf.php");
+require_once(tySystemPath . "Router/Waf.php");
 
 /*
 	ファイルがあれば、それを表示
 */
 
 if (file_exists("." . $_SERVER["REQUEST_URI"]) && $_SERVER["REQUEST_URI"] !== "/") {
-    require_once(tyPath . "System/Router/RealFileEcho.php");
+    require_once(tySystemPath . "Router/RealFileEcho.php");
 }
 
 /**
  *  Session Seting.
  */
 
-require_once(tyPath . "System/Router/SettingSession.php");
+require_once(tySystemPath . "Router/SettingSession.php");
 
 /**
  *  Error message?
  */
 
-require_once(tyPath . "System/Router/Errormessage.php");
+require_once(tySystemPath . "Router/Errormessage.php");
 
 /*
 
@@ -62,14 +63,14 @@ require_once(tyPath . "System/Router/Errormessage.php");
 // Lifeチェック
 
 if ($_SERVER["REQUEST_URI"] === "/life") {
-    require_once(tyPath . "System/Router/LifeCheck.php");
+    require_once(tySystemPath . "Router/LifeCheck.php");
 }
 
 // logout.
 
 if ($_SERVER["REQUEST_URI"] === "/logout") {
     //
-    require_once(tyPath . "System/Router/DeleteSession.php");
+    require_once(tySystemPath . "Router/DeleteSession.php");
 
     // Go TopPage.
     //        header("Location: /logout.html");
@@ -81,7 +82,7 @@ if ($_SERVER["REQUEST_URI"] === "/logout") {
  *  EXEC.
  */
 
-require_once(tyPath . "System/Router/UrlFunc.php");
+require_once(tySystemPath . "Router/UrlFunc.php");
 
 // Not EXEC then Error page.
 
