@@ -41,7 +41,7 @@ function urlFunc($url, $func)
 
         //$exec = $value;
         if (! file_exists("../Exec/{$func}/index.php")) {
-            errorPage(404);
+            Std::errorPage(404);
             exit;
         }
 

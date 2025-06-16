@@ -97,7 +97,12 @@ class Token
 
     public static function random16byteHex()
     {
-        return bin2hex(random_bytes(16));
+        return bin2hex(self::random16byte());
+    }
+
+    public static function randomBase32()
+    {
+        return base_convert(self::random16byte(), 10, 32);
     }
 
     /**
@@ -111,7 +116,12 @@ class Token
 
     public static function systemtimeHex()
     {
-        return dechex(microtime(true) * 1000000);
+        return dechex(self::systemtime());
+    }
+
+    public static function systemtimeBase32()
+    {
+        return base_convert(self::systemtime(), 10, 32);
     }
 
     /**

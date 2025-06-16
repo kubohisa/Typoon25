@@ -10,13 +10,13 @@ function sanitizer($arr)
 
     // Null byte.
     if (strpos($arr, "\0")) {
-        errorPage(503);
+        Std::errorPage(503);
         exit;
     }
 
     // Control Code.
     if (preg_match("/[\x01-\x08\x0B\x0C\x0E-\x1F\x7F]/", $arr)) {
-        errorPage(503);
+        Std::errorPage(503);
         exit;
     }
 
@@ -25,7 +25,7 @@ function sanitizer($arr)
 
     //
     if (! mb_check_encoding($arr, 'UTF-8')) {
-        errorPage(503);
+        Std::errorPage(503);
         exit;
     }
 
@@ -45,7 +45,7 @@ if (typoon::$Https === true && empty($_SERVER['HTTPS'])) {
 // Domainチェック
 
 /*    if ($_SERVER['HTTP_HOST'] !== typoon::$DomainName) {
-        errorPage(404);
+        Std::errorPage(404);
         exit;
     }
 */
@@ -53,14 +53,14 @@ if (typoon::$Https === true && empty($_SERVER['HTTPS'])) {
 // URLの文字チェック
 
 if (! preg_match("#\A[A-Za-z0-9\-\.\_\~\/\%]+\z#", $_SERVER["REQUEST_URI"])) {
-    errorPage(404);
+    Std::errorPage(404);
     exit;
 }
 
 // URLの長さチェック
 
 if (strlen($_SERVER["REQUEST_URI"]) > 1000) {
-    errorPage(404);
+    Std::errorPage(404);
     exit;
 }
 

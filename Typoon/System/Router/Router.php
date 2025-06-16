@@ -1,20 +1,6 @@
 <?php
 
 /**
- *  エラーページ処理
- */
-
-function errorPage($code)
-{
-    if ($code !== 503) {
-        $code = 404;
-    }
-
-    header("Location: /{$code}.html");
-    exit;
-}
-
-/**
  *  Php Settings.
  */
 
@@ -34,6 +20,14 @@ define("tyPath", "../../../Typoon/");
 define("extLibPath", "../../../extLib/");
 
 require_once("../Setting/setting.php");
+
+/*
+	require.
+*/
+
+require_once(tyPath . "System/Token.php");
+require_once(tyPath . "System/Loger.php");
+require_once(tyPath . "System/Std.php");
 
 /**
  *  Waf.
@@ -83,13 +77,6 @@ if ($_SERVER["REQUEST_URI"] === "/logout") {
     exit;
 }
 
-/*
-	require.
-*/
-
-require_once(tyPath . "System/Token.php");
-require_once(tyPath . "System/Loger.php");
-
 /**
  *  EXEC.
  */
@@ -98,6 +85,6 @@ require_once(tyPath . "System/Router/UrlFunc.php");
 
 // Not EXEC then Error page.
 
-errorPage(404);
+Std::errorPage(404);
 
 exit;
