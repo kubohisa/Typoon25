@@ -61,6 +61,8 @@ MITライセンスでコンパクトなフレームワークなので。古いPH
 
 あと、Typoon25のイメージ動物はオオミズナギドリです。理由は生まれた田舎の近所が舞鶴だったので
 
+<a href="https://www.nagoya-u.ac.jp/researchinfo/result/2022/10/post-343.html"><img src="https://github.com/user-attachments/assets/1ff8552d-4d2e-4851-ac89-ec61c89631e6" style="width: 16%"></a>
+
 ## メモ
 
 モジュールなフレームワークの利点として。新しい技術が出てきても、モジュールを取り換える事で対応出来ると言うメリットがあります
