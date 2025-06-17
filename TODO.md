@@ -1,4 +1,4 @@
 TODO.
 
-[ ] namespace対応
+[ ] namespace対応〈br/〉
 [ ] autoload作成
