@@ -1,4 +1,4 @@
-TODO.（あるいはKAIZENのためのKANBAN）
+TODO.（あるいは、KAIZENのためのKANBAN）
 
 + [ ] namespace対応
 + [ ] autoload作成
