@@ -1,5 +1,4 @@
 TODO.
 
-[ ] namespace対応
-
-[ ] autoload作成
++ [ ] namespace対応
++ [ ] autoload作成
