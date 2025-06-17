@@ -17,9 +17,12 @@ date_default_timezone_set('Asia/Tokyo');
 
 define("systemName", "TypoonV4");
 
-define("tyPath", tyDir . "/../../../Typoon/");
-define("tySystemPath", tyDir . "/../../../SYSTEM/");
-define("extLibPath", tyDir . "/../../../extLib/");
+define("tyDirRouter", str_replace("\\", "/", __DIR__)); // Windows's Path "\" -> "/".
+define("tyDirRoot", tyDirRouter . "/../..");
+
+//define("tyPath", tyDirRoot . "/Typoon/");
+define("tySystemPath", tyDirRoot . "/SYSTEM/");
+define("tyLibrarysPath", tyDirRoot . "/Librarys/");
 
 require_once(tyDir . "/../Setting/setting.php");
 
@@ -27,9 +30,9 @@ require_once(tyDir . "/../Setting/setting.php");
 	require.
 */
 
-require_once(tySystemPath . "Token.php");
-require_once(tySystemPath . "Loger.php");
-require_once(tySystemPath . "Std.php");
+require_once(tyLibrarysPath . "/Typoon/System/Token.php");
+require_once(tyLibrarysPath . "/Typoon/System/Loger.php");
+require_once(tyLibrarysPath . "/Typoon/System/Std.php");
 
 /**
  *  Waf.
