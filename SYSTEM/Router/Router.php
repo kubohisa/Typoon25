@@ -26,14 +26,6 @@ define("tyLibrarysPath", tyDirRoot . "/Librarys/");
 
 require_once(tyDir . "/../Setting/setting.php");
 
-/*
-	require.
-*/
-
-require_once(tyLibrarysPath . "/Typoon/System/Token.php");
-require_once(tyLibrarysPath . "/Typoon/System/Loger.php");
-require_once(tyLibrarysPath . "/Typoon/System/Std.php");
-
 /**
  *  Waf.
  */
@@ -47,6 +39,28 @@ require_once(tySystemPath . "Router/Waf.php");
 if (file_exists("." . $_SERVER["REQUEST_URI"]) && $_SERVER["REQUEST_URI"] !== "/") {
     require_once(tySystemPath . "Router/RealFileEcho.php");
 }
+
+/**
+ * autoloader.
+ */
+
+require_once(tySystemPath . "Router/Autoloader.php");
+
+/*
+	require.
+*/
+
+require_once(tyLibrarysPath . "Typoon/System/Token.php");
+require_once(tyLibrarysPath . "Typoon/System/Loger.php");
+require_once(tyLibrarysPath . "Typoon/System/Std.php");
+require_once(tyLibrarysPath . "Typoon/System/Hash.php");
+
+/**
+ * autoloader.
+ */
+
+require_once(tySystemPath . "Router/Autoloader.php");
+
 
 /**
  *  Session Seting.

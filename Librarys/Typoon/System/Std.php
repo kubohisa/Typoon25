@@ -38,4 +38,14 @@ class Std
         }
         return false;
     }
+
+    /**
+     * Print Debug.
+     */
+
+    public static function printDebug($data)
+    {
+        var_dump($data);
+        exit;
+    }
 }
