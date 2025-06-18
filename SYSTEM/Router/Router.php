@@ -50,17 +50,10 @@ require_once(tySystemPath . "Router/Autoloader.php");
 	require.
 */
 
-require_once(tyLibrarysPath . "Typoon/System/Token.php");
-require_once(tyLibrarysPath . "Typoon/System/Loger.php");
-require_once(tyLibrarysPath . "Typoon/System/Std.php");
-require_once(tyLibrarysPath . "Typoon/System/Hash.php");
-
-/**
- * autoloader.
- */
-
-require_once(tySystemPath . "Router/Autoloader.php");
-
+require_once(tyLibrarysPath . "System/Token.php");
+require_once(tyLibrarysPath . "System/Loger.php");
+require_once(tyLibrarysPath . "System/Std.php");
+require_once(tyLibrarysPath . "System/Hash.php");
 
 /**
  *  Session Seting.
