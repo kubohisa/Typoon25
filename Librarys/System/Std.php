@@ -26,6 +26,15 @@ class Std
     }
 
     /**
+     * Text trim.
+     */
+
+    public static function textTrim($text)
+    {
+        return preg_replace('/^(?:[\p{C}\p{Z}]*\R)+|(?:\R[\p{C}\p{Z}]*$)+/mu', '', $text); // Copilit.
+    }
+
+    /**
      * $GET チェック
      */
 

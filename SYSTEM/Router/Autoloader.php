@@ -5,6 +5,8 @@ spl_autoload_register(function ($class) {
 
     if (file_exists(tyLibrarysPath . $class)) {
         require_once(tyLibrarysPath . $class);
+    } elseif (file_exists(tyLibrarysPath . "extLib/" . $class)) {
+        require_once(tyLibrarysPath . "extLib/" . $class);
     }
 });
 
