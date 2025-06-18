@@ -15,7 +15,7 @@ date_default_timezone_set('Asia/Tokyo');
 
 // if (!defined('systemName')) exit;
 
-define("systemName", "TypoonV4");
+define("systemName", "Typoon25");
 
 define("tyDirRoot", str_replace("\\", "/", __DIR__) . "/../../"); // Windows's Path "\" -> "/".
 define("tySystemPath", tyDirRoot . "SYSTEM/");
