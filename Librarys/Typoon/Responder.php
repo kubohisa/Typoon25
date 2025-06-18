@@ -15,6 +15,15 @@ class Responder
     }
 
     /**
+     * Output File.
+     */
+
+    public static function file($file, $data)
+    {
+        return file_put_contents(tyDirDocument . "/" . $file, $data);
+    }
+
+    /**
      * Location処理
      */
 
