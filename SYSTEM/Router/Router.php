@@ -17,10 +17,9 @@ date_default_timezone_set('Asia/Tokyo');
 
 define("systemName", "TypoonV4");
 
-define("tyDirRouter", str_replace("\\", "/", __DIR__)); // Windows's Path "\" -> "/".
-define("tyDirRoot", tyDirRouter . "/../..");
+//define("tyDirRouter", str_replace("\\", "/", __DIR__));
+define("tyDirRoot", str_replace("\\", "/", __DIR__) . "/../.."); // Windows's Path "\" -> "/".
 
-//define("tyPath", tyDirRoot . "/Typoon/");
 define("tySystemPath", tyDirRoot . "/SYSTEM/");
 define("tyLibrarysPath", tyDirRoot . "/Librarys/");
 

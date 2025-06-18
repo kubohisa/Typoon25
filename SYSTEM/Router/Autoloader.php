@@ -3,10 +3,8 @@
 spl_autoload_register(function ($class) {
     $class = str_replace('\\', '/', $class) . ".php";
 
-    if (file_exists(tyLibrarysPath . "Typoon/" . $class)) {
-        require_once(tyLibrarysPath . "Typoon/" . $class);
-    } elseif (file_exists(tyLibrarysPath . "extLib/" . $class)) {
-        require_once(tyLibrarysPath . "extLib/" . $class);
+    if (file_exists(tyLibrarysPath . $class)) {
+        require_once(tyLibrarysPath . $class);
     }
 });
 
