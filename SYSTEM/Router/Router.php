@@ -56,7 +56,9 @@ require_once(tyLibrarysPath . "System/Hash.php");
  *  Session Seting.
  */
 
-require_once(tySystemPath . "Router/SettingSession.php");
+require_once(tySystemPath . "Router/Session.php");
+
+Session::start();
 
 /**
  *  Error message?
@@ -78,7 +80,7 @@ if ($_SERVER["REQUEST_URI"] === "/life") {
 
 if ($_SERVER["REQUEST_URI"] === "/logout") {
     //
-    require_once(tySystemPath . "Router/DeleteSession.php");
+    Session::end();
 
     // Go TopPage.
     //        header("Location: /logout.html");
