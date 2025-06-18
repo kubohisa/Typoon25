@@ -1,5 +1,5 @@
 TODO.（あるいは、KAIZENのためのKANBAN）
 
 + [ ] namespace対応
-+ [ ] autoload作成
++ [x] autoload作成
 + [ ] 普通のテキストファイル作成機能
