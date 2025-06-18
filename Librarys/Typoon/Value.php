@@ -233,6 +233,10 @@ class Value
 				$this->value = preg_replace('#\A[\p{C}\p{Z}]++|[\p{C}\p{Z}]++\z#u', '', $this->value);
 				break;
 
+			case "trimText":
+				$this->value = preg_replace('#^(?:[\p{C}\p{Z}]*\R)+|(?:\R[\p{C}\p{Z}]*$)+#mu', '', $this->value); // Copilit.
+				break;
+
 			case "":
 				break;
 		}

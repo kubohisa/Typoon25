@@ -14,13 +14,13 @@ function urlFunc($url, $func)
 
     $url = Std::mbTrim($url);
 
-    $url = preg_replace("#\/\*(.+?)(\/|\z)#", "\/(?P<$1>.*?)$1$2", $url); // Use preg "*".
+    $url = preg_replace("#\/\*([0-9a-zA-z\_\-]+?)(\/|\z)#", "\/(?P<$1>.*?)$1$2", $url); // Use preg "*".
 
-    $url = preg_replace("#\/\:(.+?)(\/|\z)#", "\/(?P<$1>.*?)$2", $url); // Use preg ":".
-    $url = preg_replace("#\/\[(.+?)\](\/|\z)#", "\/(?P<$1>.*?)$2", $url); // Use preg "[]".
-    $url = preg_replace("#\/\{(.+?)\}(\/|\z)#", "\/(?P<$1>.*?)$2", $url); // Use preg "{}".
+    $url = preg_replace("#\/\:([0-9a-zA-z\_\-]+?)(\/|\z)#", "\/(?P<$1>.*?)$2", $url); // Use preg ":".
+    $url = preg_replace("#\/\[([0-9a-zA-z\_\-]+?)\](\/|\z)#", "\/(?P<$1>.*?)$2", $url); // Use preg "[]".
+    $url = preg_replace("#\/\{([0-9a-zA-z\_\-]+?)\}(\/|\z)#", "\/(?P<$1>.*?)$2", $url); // Use preg "{}".
 
-    $url = preg_replace("#\/\[\.\.\.(.+?)\](.*)\z#", "\/(?P<$1>.*?)$2\z", $url); // Use preg "[...]".
+    $url = preg_replace("#\/\[\.\.\.([0-9a-zA-z\_\-]+?)\](.*)\z#", "\/(?P<$1>.*?)$2\z", $url); // Use preg "[...]".
 
     /**
      *  $urlと$URIが正規表現上同じなら実行
