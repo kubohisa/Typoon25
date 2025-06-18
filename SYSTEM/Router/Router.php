@@ -17,13 +17,11 @@ date_default_timezone_set('Asia/Tokyo');
 
 define("systemName", "TypoonV4");
 
-define("tyDirDocument", str_replace("\\", "/", __DIR__)); // Windows's Path "\" -> "/".
-define("tyDirRoot", tyDirDocument . "/../..");
+define("tyDirRoot", str_replace("\\", "/", __DIR__) . "/../../"); // Windows's Path "\" -> "/".
+define("tySystemPath", tyDirRoot . "SYSTEM/");
+define("tyLibrarysPath", tyDirRoot . "Librarys/");
 
-define("tySystemPath", tyDirRoot . "/SYSTEM/");
-define("tyLibrarysPath", tyDirRoot . "/Librarys/");
-
-require_once(tyDir . "/../Setting/setting.php");
+require_once(tyDirDocument . "/../Setting/setting.php");
 
 /**
  *  Waf.

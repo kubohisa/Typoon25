@@ -18,9 +18,9 @@ class Responder
      * Output File.
      */
 
-    public static function file($file, $data)
+    public static function file($file, $data, $dir = tyDirDocument . "/")
     {
-        return file_put_contents(tyDirDocument . "/" . $file, $data);
+        return file_put_contents($dir . $file, $data);
     }
 
     /**
