@@ -14,6 +14,6 @@ class ActionHelper
     public static function jsonPost($id)
     {
         if (empty($_POST[$id])) return array();
-        return json_decode(file_get_contents($_POST[$id]), true);
+        return json_decode($_POST[$id], true);
     }
 }

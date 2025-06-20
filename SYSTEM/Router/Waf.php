@@ -9,7 +9,7 @@ function sanitizer($arr)
     }
 
     // Null byte.
-    if (strpos($arr, "\0")) {
+    if (strpos($arr, "\0") !== false) {
         Std::errorPage(503);
         exit;
     }
