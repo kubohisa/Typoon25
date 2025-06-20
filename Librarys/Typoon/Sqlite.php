@@ -65,6 +65,15 @@ class Sqlite
         return $this->d->prepare($sql);
     }
 
+    public function bindValue($st, $key, $value, $type = null)
+    {
+        return $st->bindValue($key, $value, $type);
+    }
+
+    /**
+     * 
+     */
+
     public function execute($st, $array = null)
     {
         return $st->execute($array);
