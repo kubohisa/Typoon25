@@ -36,11 +36,11 @@ $extensions = [
 ]; // https://www.abe-tatsuya.com/techblog/article/15
 
 //
-$ext = pathinfo($_SERVER["REQUEST_URI"], PATHINFO_EXTENSION);
+$ext = pathinfo("." . $_SERVER["REQUEST_URI"], PATHINFO_EXTENSION);
 
 // 拡張子がphpならエラーページへ
 if ($ext === "php") {
-    errorPage(404);
+    Std::errorPage(404);
     exit;
 }
 

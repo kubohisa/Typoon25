@@ -4,15 +4,22 @@
  *  
  */
 
-function urlFunc($url, $func)
+function urlFunc($GET, $EXEC, $URI, $url, $func)
 {
-    global $GET, $EXEC, $URI;
+    /**
+     * 前処理
+     */
+
+    $url = Std::mbTrim($url);
+
+    if (! preg_match('#\A[0-9A-Za-z\_\-]+\z#', $func)) {
+        Std::errorPage(503);
+        exit;
+    } // バリデーター
 
     /**
      *  $urlから正規表現で、パラメーターを取得できる正規表現を作る
      */
-
-    $url = Std::mbTrim($url);
 
     $url = preg_replace("#\/\*([0-9a-zA-z\_\-]+?)(\/|\z)#", "\/(?P<$1>.*?)$1$2", $url); // Use preg "*".
 
@@ -88,5 +95,5 @@ array_multisort(
  */
 
 foreach (urlFunc::$list as [$path, $exec]) {
-    urlFunc($path, $exec);
+    urlFunc($GET, $EXEC, $URI, $path, $exec);
 }

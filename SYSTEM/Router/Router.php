@@ -34,7 +34,9 @@ require_once(tySystemPath . "Router/Waf.php");
 */
 
 if (file_exists("." . $_SERVER["REQUEST_URI"]) && $_SERVER["REQUEST_URI"] !== "/") {
-    require_once(tySystemPath . "Router/RealFileEcho.php");
+    if (is_file("." . $_SERVER["REQUEST_URI"])) { // ファイルがあるか、ファイルなのか
+        require_once(tySystemPath . "Router/RealFileEcho.php");
+    }
 }
 
 /**
