@@ -23,6 +23,15 @@ define("tyLibrariesPath", tyDirRoot . "Libraries/");
 
 require_once(tyDirDocument . "/../Setting/setting.php");
 
+/*
+	require.
+*/
+
+require_once(tyLibrariesPath . "System/Token.php");
+require_once(tyLibrariesPath . "System/Loger.php");
+require_once(tyLibrariesPath . "System/Std.php");
+require_once(tyLibrariesPath . "System/Hash.php");
+
 /**
  *  Waf.
  */
@@ -44,15 +53,6 @@ if (file_exists("." . $_SERVER["REQUEST_URI"]) && $_SERVER["REQUEST_URI"] !== "/
  */
 
 require_once(tySystemPath . "Router/Autoloader.php");
-
-/*
-	require.
-*/
-
-require_once(tyLibrariesPath . "System/Token.php");
-require_once(tyLibrariesPath . "System/Loger.php");
-require_once(tyLibrariesPath . "System/Std.php");
-require_once(tyLibrariesPath . "System/Hash.php");
 
 /**
  *  Session Seting.
