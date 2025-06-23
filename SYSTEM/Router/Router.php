@@ -19,7 +19,7 @@ define("systemName", "Typoon25");
 
 define("tyDirRoot", str_replace("\\", "/", __DIR__) . "/../../"); // Windows's Path "\" -> "/".
 define("tySystemPath", tyDirRoot . "SYSTEM/");
-define("tyLibrarysPath", tyDirRoot . "Librarys/");
+define("tyLibrariesPath", tyDirRoot . "Libraries/");
 
 require_once(tyDirDocument . "/../Setting/setting.php");
 
@@ -49,10 +49,10 @@ require_once(tySystemPath . "Router/Autoloader.php");
 	require.
 */
 
-require_once(tyLibrarysPath . "System/Token.php");
-require_once(tyLibrarysPath . "System/Loger.php");
-require_once(tyLibrarysPath . "System/Std.php");
-require_once(tyLibrarysPath . "System/Hash.php");
+require_once(tyLibrariesPath . "System/Token.php");
+require_once(tyLibrariesPath . "System/Loger.php");
+require_once(tyLibrariesPath . "System/Std.php");
+require_once(tyLibrariesPath . "System/Hash.php");
 
 /**
  *  Session Seting.

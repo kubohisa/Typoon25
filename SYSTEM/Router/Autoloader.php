@@ -3,10 +3,10 @@
 spl_autoload_register(function ($class) {
     $class = str_replace('\\', '/', $class) . ".php";
 
-    if (explode("/", $class)[0] === "Typoon" && file_exists(tyLibrarysPath . $class)) {
-        require_once(tyLibrarysPath . $class);
-    } elseif (file_exists(tyLibrarysPath . "extLib/" . $class)) {
-        require_once(tyLibrarysPath . "extLib/" . $class);
+    if (explode("/", $class)[0] === "Typoon" && file_exists(tyLibrariesPath . $class)) {
+        require_once(tyLibrariesPath . $class);
+    } elseif (file_exists(tyLibrariesPath . "extLib/" . $class)) {
+        require_once(tyLibrariesPath . "extLib/" . $class);
     }
 });
 

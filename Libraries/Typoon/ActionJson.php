@@ -8,6 +8,13 @@ class ActionJson
 
     public static function json()
     {
+        if (! isset($_SERVER['CONTENT_TYPE'])) {
+            if (strpos($_SERVER['CONTENT_TYPE'], 'application/json') === false) {
+                self::error();
+            }
+        }
+        // JSONでない場合はエラー
+
         if (! $array = json_decode(file_get_contents("php://input"), true)) self::error();
         if (empty($array)) self::error();
 
