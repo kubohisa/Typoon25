@@ -39,24 +39,6 @@ class Sqlite
     }
 
     /**
-     * 直接、SQLを実行します（非推奨）
-     */
-
-    public function exec($st, $sql)
-    {
-        return $this->d->exec($this->d->quote($sql));
-    }
-
-    /**
-     * 直接、SQLを実行します（非推奨）
-     */
-
-    public function query($st, $sql)
-    {
-        return $this->d->query($this->d->quote($sql));
-    }
-
-    /**
      * 
      */
 
