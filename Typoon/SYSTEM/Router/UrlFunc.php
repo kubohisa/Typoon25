@@ -69,6 +69,10 @@ $URI = $_SERVER["REQUEST_URI"];
 
 $METHOD = $_SERVER['REQUEST_METHOD'];
 
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (empty($_POST['name'])) $_POST['name'] = "";
+}
+
 $GET = array();
 
 /**
