@@ -17,9 +17,9 @@ date_default_timezone_set('Asia/Tokyo');
 
 define("systemName", "Typoon25");
 
-define("tyDirRoot", str_replace("\\", "/", __DIR__) . "/../../"); // Windows's Path "\" -> "/".
-define("tySystemPath", tyDirRoot . "SYSTEM/");
-define("tyLibrariesPath", tyDirRoot . "Libraries/");
+define("tyDirRoot", str_replace("\\", "/", __DIR__) . "/../../../"); // Windows's Path "\" -> "/".
+define("tySystemPath", tyDirRoot . "Typoon/SYSTEM/");
+define("tyLibrariesPath", tyDirRoot . "Typoon/Libraries/");
 
 require_once(tyDirDocument . "/../Setting/setting.php");
 

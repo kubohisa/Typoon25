@@ -5,8 +5,8 @@ spl_autoload_register(function ($class) {
 
     if (explode("/", $class)[0] === "Typoon" && file_exists(tyLibrariesPath . $class)) {
         require_once(tyLibrariesPath . $class);
-    } elseif (file_exists(tyLibrariesPath . "extLib/" . $class)) {
-        require_once(tyLibrariesPath . "extLib/" . $class);
+    } elseif (file_exists(tyDirRoot . "extLibraries/" . $class)) {
+        require_once(tyDirRoot . "extLibraries/" . $class);
     }
 });
 
@@ -14,4 +14,4 @@ spl_autoload_register(function ($class) {
  * 強制的読み込みを行うなら、以降で require_once
  */
 
- // require_once();
+// require_once();
