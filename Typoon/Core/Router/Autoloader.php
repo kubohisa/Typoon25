@@ -5,8 +5,8 @@ spl_autoload_register(function ($class) {
 
     if (explode("/", $class)[0] === "Typoon" && file_exists(tyLibrariesPath . $class)) {
         require_once(tyLibrariesPath . $class);
-    } elseif (file_exists(tyDirRoot . "extLibraries/" . $class)) {
-        require_once(tyDirRoot . "extLibraries/" . $class);
+    } elseif (file_exists(tyDirRoot . "vendorExtra/" . $class)) {
+        require_once(tyDirRoot . "vendorExtra/" . $class);
     }
 });
 
