@@ -52,7 +52,7 @@ if (file_exists("." . $_SERVER["REQUEST_URI"]) && $_SERVER["REQUEST_URI"] !== "/
  * autoloader.
  */
 
-require_once(tySystemPath . "Router/Autoloader.php");
+require_once(tySystemPath . "Autoloader.php");
 
 /**
  *  Session Seting.
