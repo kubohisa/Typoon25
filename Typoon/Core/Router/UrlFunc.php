@@ -43,8 +43,7 @@ function urlFunc($GET, $EXEC, $URI, $url, $func)
         array_shift($arr);
 
         //
-        $GET = $arr;
-        $GET = sanitizer($GET);
+        Res::$GET = sanitizer($arr);
 
         //$exec = $value;
         if (! file_exists("../Exec/{$func}/index.php")) {

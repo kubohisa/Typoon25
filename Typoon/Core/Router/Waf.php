@@ -69,7 +69,9 @@ if (strlen($_SERVER["REQUEST_URI"]) > 1000) {
 $_GET = array();
 
 $_POST = sanitizer($_POST);
+Res::$POST = &$_POST;
 
 $_COOKIE = sanitizer($_COOKIE);
+Res::$COOKIE = &$_COOKIE;
 
 $_SERVER = sanitizer($_SERVER);

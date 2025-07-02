@@ -31,6 +31,7 @@ require_once(tyLibrariesPath . "System/Token.php");
 require_once(tyLibrariesPath . "System/Loger.php");
 require_once(tyLibrariesPath . "System/Std.php");
 require_once(tyLibrariesPath . "System/Hash.php");
+require_once(tyLibrariesPath . "System/Res.php");
 
 /**
  *  Waf.
