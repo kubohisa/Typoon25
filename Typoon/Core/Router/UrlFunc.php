@@ -45,6 +45,9 @@ function urlFunc($GET, $EXEC, $URI, $url, $func)
         //
         Res::$GET = sanitizer($arr);
 
+        // Setting Res::$METHOD.
+        Res::methodSet();
+
         //$exec = $value;
         if (! file_exists("../Exec/{$func}/index.php")) {
             Std::errorPage(404);
@@ -65,12 +68,6 @@ function urlFunc($GET, $EXEC, $URI, $url, $func)
 $EXEC = "";
 
 $URI = $_SERVER["REQUEST_URI"];
-
-$METHOD = $_SERVER['REQUEST_METHOD'];
-
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (empty($_POST['name'])) $_POST['name'] = "";
-}
 
 $GET = array();
 
