@@ -6,9 +6,10 @@ class Token
 
     */
 
-    public static function ipToken()
+    public static function udidToken()
     {
         $ip = "";
+
         if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
             $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
         } elseif (isset($_SERVER['HTTP_CLIENT_IP'])) {
@@ -17,13 +18,11 @@ class Token
             $ip = $_SERVER['REMOTE_ADDR'];
         }
 
-        $_SESSION['TyIpToken'] = hash(
+        return hash(
             'ripemd160',
-            $ip . $_SERVER['HTTP_USER_AGENT'] . $_SERVER['HTTP_ACCEPT_LANGUAGE']
+            $_SESSION['LoginId'] . $ip . $_SERVER['HTTP_USER_AGENT'] . $_SERVER['HTTP_ACCEPT_LANGUAGE']
         );
         // スマホなどはipアドレスが変化する可能性があるので、フォーム作成時ハッシュ作成
-
-        return $_SESSION['TyIpToken'];
     }
 
     /*
@@ -33,7 +32,7 @@ class Token
     public static function uid($id)
     {
         //
-        $_SESSION['uuId'] = strtoupper(hash(
+        $_SESSION['LoginId'] = strtoupper(hash(
             'sha512',
             hash('sha512', $id) . "_" .
                 hash('sha512', "NameSpace") . "_" .
@@ -42,11 +41,18 @@ class Token
                 hash('sha512', rand())
         ));
 
+        return;
+
+        /*
+
         //
         $_SESSION['guId'] = substr(substr_replace($_SESSION['uuId'], 'A', 16, 1), 0, 32);
         //      $_SESSION['guId'] = substr_replace($_SESSION['guId'], '4', 12, 1); // uuid V4
         $_SESSION['guId'] = preg_replace('#\A(.{8})(.{4})(.{4})(.{4})(.{12})#', '$1-$2-$3-$4-$5', $_SESSION['guId']);
+        
+        */
     }
+
 
     /*
 

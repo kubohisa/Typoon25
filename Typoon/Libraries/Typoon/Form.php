@@ -2,16 +2,23 @@
 
 class Form
 {
-    /*
-
-    */
+    /**
+     * Command Pattern.
+     */
 
     public static function mode($mode)
     {
-        if (isset($_POST['mode']) && trim($_POST['mode']) === $mode) {
+        if (isset($_POST['formMode']) && trim($_POST['formMode']) === $mode) {
             return true;
         }
         return false;
+    }
+
+    public static function modeGet()
+    {
+        if (empty($_POST['formMode'])) $_POST['formMode'] = "";
+
+        return $_POST['formMode'];
     }
 
     /*
@@ -32,35 +39,46 @@ class Form
 
     */
 
-    public static function start()
+    public static function start($flag = true)
     {
-        $_SESSION['TyIpToken'] = Token::ipToken();
+        if ($flag === true) {
+            $_SESSION['TyUdidToken'] = Token::udidToken();
+        }
+
         $_SESSION['TyFormToken'] = Token::formToken();
 
         return $_SESSION['TyFormToken'];
     }
 
-    public static function Check($var)
+    public static function Check($var, $flag = true)
     {
 
         //
-        if (empty($_SESSION['TyIpToken'])) {
-            return false;
+        if ($flag === true) {
+            if (empty($_SESSION['TyIpToken'])) {
+                return false;
+            }
+
+            $ipcheck = $_SESSION['TyIpToken'];
+            unset($_SESSION['TyIpToken']);
         }
 
+        //
         if (empty($_SESSION['TyFormToken'])) {
             return false;
         }
 
-        //
-        $ipcheck = $_SESSION['TyIpToken'];
-        unset($_SESSION['TyIpToken']);
-
         $check = $_SESSION['TyFormToken'];
         unset($_SESSION['TyFormToken']);
 
-        if ($check === $var && $ipcheck === Token::ipToken()) {
-            return true;
+        if ($flag === true) {
+            if ($check === $var && $ipcheck === Token::udidToken()) {
+                return true;
+            }
+        } else {
+            if ($check === $var) {
+                return true;
+            }
         }
         return false;
     }
