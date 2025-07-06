@@ -28,14 +28,14 @@ class Value
 
 	private function initError($exec)
 	{
-		$this->error[$exec]["flag"] = false;
+		$this->error["error"][$exec] = false;
 	}
 
 	private function setError($exec, $message = "")
 	{
 		$this->error["SYSTEM"]["error"] = true;
-		$this->error[$exec]["flag"] = true;
-		$this->error[$exec]["message"] = (string)$message;
+		$this->error["error"][$exec] = true;
+		$this->error["message"][$exec] = (string)$message;
 	}
 
 	public function getError()
