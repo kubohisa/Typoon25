@@ -216,10 +216,9 @@ class Value
 				}
 				break;
 
-
 			//
 			default:
-				$this->setError($exec, "Can't error.");
+				$this->setError($exec, "validate: Can't error.");
 				break;
 		}
 
@@ -237,7 +236,20 @@ class Value
 				$this->value = preg_replace('#^(?:[\p{C}\p{Z}]*\R)+|(?:\R[\p{C}\p{Z}]*$)+#mu', '', $this->value); // Copilit.
 				break;
 
+			case "htmlTag":
+				$this->value = strip_tags($this->value);
+				break;
+
+			case "rn":
+				$this->value = preg_replace('#[\r\n]+?#u', '', $this->value);
+				break;
+
 			case "":
+				break;
+
+			//
+			default:
+				$this->setError($exec, "delete: Can't error.");
 				break;
 		}
 
@@ -261,6 +273,11 @@ class Value
 
 			case "":
 				break;
+
+			//
+			default:
+				$this->setError($exec, "type: Can't error.");
+				break;
 		}
 
 		return $this;
@@ -279,14 +296,6 @@ class Value
 				$this->value = htmlentities($this->value, ENT_QUOTES);
 				break;
 
-			case "deleteTag":
-				$this->value = strip_tags($this->value);
-				break;
-
-			case "deleteRn":
-				$this->value = preg_replace('#[\r\n]+?#u', '', $this->value);
-				break;
-
 			case "lenPost":
 				if (strlen($this->value) > 1000) {
 					if (empty($option[1])) $option[1] = "";
@@ -297,6 +306,11 @@ class Value
 				break; // セキュリティの為のPOSTのデータ長チェック（仮組み）
 
 			case "":
+				break;
+
+			//
+			default:
+				$this->setError($exec, "filter: Can't error.");
 				break;
 		}
 
@@ -315,8 +329,13 @@ class Value
 				$this->value = date('Y年m月d日 H時i分s秒', time());
 				break;
 
-			default:
+			case "":
 				$this->value = "";
+				break;
+
+			//
+			default:
+				$this->setError($exec, "make: Can't error.");
 				break;
 		}
 
