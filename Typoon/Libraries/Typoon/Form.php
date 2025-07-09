@@ -3,6 +3,25 @@
 class Form
 {
     /**
+     * 確認画面の為のデータ・キャッシュ
+     */
+
+    public static function cacheReset()
+    {
+        $_SESSION["TyCache"] = array();
+    }
+
+    public static function cacheSave($array)
+    {
+        $_SESSION["TyCache"] = $array;
+    }
+
+    public static function cacheLoad()
+    {
+        return $_SESSION["TyCache"];
+    }
+
+    /**
      * Command Pattern.
      */
 
@@ -35,9 +54,9 @@ class Form
         }
     }
 
-    /*
-
-    */
+    /**
+     * 
+     */
 
     public static function start($flag = true)
     {

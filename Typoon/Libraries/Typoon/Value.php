@@ -5,9 +5,9 @@
 
 class Value
 {
-	/*
-		System Functions.
-	*/
+	/**
+	 * System Functions.
+	 */
 
 	private $value;
 
