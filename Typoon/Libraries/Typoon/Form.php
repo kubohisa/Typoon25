@@ -23,11 +23,13 @@ class Form
 
     /**
      * Command Pattern.
+     * 
+     * オートマトンな状態偏移でアプリケーションを動かす時、利用できる
      */
 
     public static function mode($mode)
     {
-        if (isset($_POST['formMode']) && trim($_POST['formMode']) === $mode) {
+        if (isset($_POST['TyMode']) && trim($_POST['TyMode']) === $mode) {
             return true;
         }
         return false;
@@ -35,9 +37,9 @@ class Form
 
     public static function modeGet()
     {
-        if (empty($_POST['formMode'])) $_POST['formMode'] = "";
+        if (empty($_POST['TyMode'])) $_POST['TyMode'] = "";
 
-        return $_POST['formMode'];
+        return $_POST['TyMode'];
     }
 
     /*
@@ -58,6 +60,7 @@ class Form
      * 
      */
 
+    //
     public static function start($flag = true)
     {
         if ($flag === true) {
@@ -69,7 +72,8 @@ class Form
         return $_SESSION['TyFormToken'];
     }
 
-    public static function Check($var, $flag = true)
+    //
+    public static function Check($flag = true)
     {
 
         //
@@ -82,20 +86,25 @@ class Form
             unset($_SESSION['TyIpToken']);
         }
 
-        //
         if (empty($_SESSION['TyFormToken'])) {
             return false;
         }
 
+        //
         $check = $_SESSION['TyFormToken'];
         unset($_SESSION['TyFormToken']);
 
+        //
+        if (empty($_POST['TyToken'])) {
+            return false;
+        }
+
         if ($flag === true) {
-            if ($check === $var && $ipcheck === Token::udidToken()) {
+            if ($check === $_POST['TyToken'] && $ipcheck === Token::udidToken()) {
                 return true;
             }
         } else {
-            if ($check === $var) {
+            if ($check === $_POST['TyToken']) {
                 return true;
             }
         }
