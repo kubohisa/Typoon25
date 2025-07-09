@@ -86,11 +86,11 @@ class Form
             unset($_SESSION['TyIpToken']);
         }
 
+        //
         if (empty($_SESSION['TyFormToken'])) {
             return false;
         }
 
-        //
         $check = $_SESSION['TyFormToken'];
         unset($_SESSION['TyFormToken']);
 
