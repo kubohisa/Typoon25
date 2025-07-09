@@ -42,6 +42,21 @@ class Form
         return $_POST['TyMode'];
     }
 
+    /**
+     * Is set $_POST.
+     * 
+     * $_POST変数があるかどうか確かめる
+     */
+
+    public static function issetPost($id)
+    {
+        if (isset($_POST[$id])) {
+            return true;
+        }
+
+        return false;
+    }
+
     /*
 
     */
