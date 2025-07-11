@@ -40,7 +40,20 @@ class Form
         if (empty($_POST['TyMode'])) $_POST['TyMode'] = "";
 
         return $_POST['TyMode'];
-    }
+    } // case, switch
+
+    public static function modeSwitch($array = [], $mode = "")
+    {
+        foreach ($array as $key => $value) {
+            if (file_exists(tyDirDocument . $array[$key]["file"] . ".php")) {
+                require_once(tyDirDocument . $array[$key]["file"] . ".php");
+            }
+        }
+
+        if (function_exists($array[$mode]["func"])) {
+            $array[$mode]["func"]();
+        }
+    } // 仮組み
 
     /**
      * Is set $_POST.
@@ -72,7 +85,7 @@ class Form
     }
 
     /**
-     * 
+     * CSRF検証
      */
 
     //
