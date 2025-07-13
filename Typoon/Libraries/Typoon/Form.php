@@ -42,16 +42,34 @@ class Form
         return $_POST['TyMode'];
     } // case, switch
 
-    public static function modeSwitch($array = [], $mode = "")
+    public static function modeSwitch($array = [])
     {
-        foreach ($array as $key => $value) {
-            if (file_exists(tyDirDocument . $array[$key]["file"] . ".php")) {
-                require_once(tyDirDocument . $array[$key]["file"] . ".php");
+        //
+        $exec = Res::$EXEC;
+        $path = tyDirDocument . "../Exec/{$exec}/";
+
+        if ($dh = opendir($path)) {
+            while ($filename = readdir($dh)) {
+                // ファイルかどうか
+                if (is_file($path . $filename)) continue;
+
+                // index.phpかどうか
+                if ($filename === "index.php") continue;
+
+                // ファイル読み込み
+                if (file_exists($path . $filename)) {
+                    require_once($path . $filename);
+                }
             }
+
+            closedir($dh);
+        } else {
+            //
         }
 
-        if (function_exists($array[$mode]["func"])) {
-            $array[$mode]["func"]();
+        //
+        if (function_exists($array[$_POST['TyMode']])) {
+            $array[$_POST['TyMode']]();
         }
     } // 仮組み
 

@@ -4,7 +4,7 @@
  *  
  */
 
-function urlFunc($GET, $EXEC, $URI, $url, $func)
+function urlFunc($GET, $URI, $url, $func)
 {
     /**
      * 前処理
@@ -54,7 +54,8 @@ function urlFunc($GET, $EXEC, $URI, $url, $func)
             exit;
         }
 
-        $EXEC = $func;
+        Res::$EXEC = $func;
+
         require_once("../Exec/{$func}/index.php");
 
         exit;
@@ -95,5 +96,5 @@ array_multisort(
  */
 
 foreach (urlFunc::$list as [$path, $exec]) {
-    urlFunc($GET, $EXEC, $URI, $path, $exec);
+    urlFunc($GET, $URI, $path, $exec);
 }

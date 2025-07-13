@@ -16,6 +16,7 @@ class Res
     public static $COOKIE = array();
 
     public static $METHOD = "";
+    public static $EXEC = "";
 
     /**
      * Setting Res::$METHOD.
