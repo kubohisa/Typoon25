@@ -51,7 +51,7 @@ class Form
         if ($dh = opendir($path)) {
             while ($filename = readdir($dh)) {
                 // ファイルかどうか
-                if (is_file($path . $filename)) continue;
+                if (! is_file($path . $filename)) continue;
 
                 // index.phpかどうか
                 if ($filename === "index.php") continue;
