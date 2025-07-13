@@ -53,8 +53,8 @@ class Form
                 // ファイルかどうか
                 if (! is_file($path . $filename)) continue;
 
-                // index.phpかどうか
-                if ($filename === "index.php") continue;
+                // .phpかどうか
+                if (pathinfo($filename, PATHINFO_EXTENSION) !== "php" || $filename === "index.php") continue;
 
                 // ファイル読み込み
                 if (file_exists($path . $filename)) {
