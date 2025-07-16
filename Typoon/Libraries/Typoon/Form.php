@@ -42,7 +42,11 @@ class Form
         return $_POST['TyMode'];
     } // case, switch
 
-    public static function modeSwitch($array = [])
+    /**
+     * ディレクトリのソースリストを読み込み
+     */
+
+    public static function sourceAutoLoader()
     {
         //
         $exec = Res::$EXEC;
@@ -50,11 +54,11 @@ class Form
 
         if ($dh = opendir($path)) {
             while ($filename = readdir($dh)) {
-                // ファイルかどうか
-                if (! is_file($path . $filename)) continue;
-
                 // .phpかどうか
                 if (pathinfo($filename, PATHINFO_EXTENSION) !== "php" || $filename === "index.php") continue;
+
+                // ファイルかどうか
+                if (! is_file($path . $filename)) continue;
 
                 // ファイル読み込み
                 if (file_exists($path . $filename)) {
@@ -66,12 +70,24 @@ class Form
         } else {
             //
         }
+    } // 仮組み
 
+    /**
+     * $_POST["TyMode"]で関数実行  
+     */
+
+    public static function modeSwitch($array = [])
+    {
         //
         if (function_exists($array[$_POST['TyMode']])) {
             $array[$_POST['TyMode']]();
+            // 普通は、HTML表示へ移行して戻って来る事は無い処理
+
+            return true;
         }
-    } // 仮組み
+
+        return false;
+    }
 
     /**
      * Is set $_POST.
